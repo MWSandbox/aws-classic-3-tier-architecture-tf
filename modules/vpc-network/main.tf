@@ -1,6 +1,6 @@
 locals {
   flow_log_aggregation_interval    = 600
-  flow_log_retention_in_days       = 2
+  flow_log_retention_in_days       = 3
   flow_log_deletion_window_in_days = 7
   traffic_ports                    = [80, 443]
   ephemeral_port_range_by_nat      = [1024, 65535]

@@ -150,7 +150,7 @@ resource "aws_cloudfront_response_headers_policy" "secure_header_config" {
   security_headers_config {
     content_security_policy {
       override                = true
-      content_security_policy = "frame-ancestors 'none'; default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; media-src 'self'; object-src 'none'; connect-src 'https://${var.backend_dns_name}'"
+      content_security_policy = "frame-ancestors 'none'; default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; manifest-src 'self'; object-src 'none'; connect-src 'self' https://${var.backend_dns_name}/"
     }
     content_type_options {
       override = true

@@ -138,7 +138,7 @@ variable "db_backup_retention_period_in_days" {
   default     = 2
   validation {
     condition     = var.db_backup_retention_period_in_days >= 1 && var.db_backup_retention_period_in_days <= 35
-    error_message = "Retention period has to be between 0 and 35 days."
+    error_message = "Retention period has to be between 1 and 35 days."
   }
 }
 
