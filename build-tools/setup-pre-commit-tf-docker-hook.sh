@@ -22,7 +22,7 @@ pre_commit_container_exists=\$?
 if [[ pre_commit_container_exists -eq 0 ]]; then
     docker restart $CONTAINER_NAME && docker attach --no-stdin $CONTAINER_NAME
 else
-    docker run -e INFRACOST_API_KEY=$INFRACOST_API_KEY -v $REPO_PATH:/lint -v /home/ubuntu/.aws:/root/.aws -w /lint --name $CONTAINER_NAME $IMAGE_NAME run -a
+    docker run -e INFRACOST_API_KEY=$INFRACOST_API_KEY -v $REPO_PATH:/lint -v $HOME/.aws:/root/.aws -w /lint --name $CONTAINER_NAME $IMAGE_NAME run -a
 fi" >> $HOOK_PATH
 
 chmod +x $HOOK_PATH
