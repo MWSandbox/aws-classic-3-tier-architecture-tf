@@ -11,23 +11,33 @@ resource "aws_s3_bucket" "logs" {
   #ts:skip=AC_AWS_0215 All users in the AWS account will have access to the log files
 
   bucket        = "${var.common.project_name}-logs"
-  acl           = "log-delivery-write"
   force_destroy = true
-
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
 
   tags = {
     Name = "${var.common.project_name}-logs"
+  }
+}
+
+resource "aws_s3_bucket_versioning" "logs" {
+  bucket = aws_s3_bucket.logs.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_acl" "logs" {
+  bucket = aws_s3_bucket.logs.id
+  acl    = "log-delivery-write"
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "logs" {
+  bucket = aws_s3_bucket.logs.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
   }
 }
 

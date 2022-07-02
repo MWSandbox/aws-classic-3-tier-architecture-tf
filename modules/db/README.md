@@ -34,6 +34,7 @@
 | <a name="input_db_password_secret_name"></a> [db\_password\_secret\_name](#input\_db\_password\_secret\_name) | Name of the secret in AWS Secrets Manager holding the DB password. | `string` | n/a |
 | <a name="input_db_user"></a> [db\_user](#input\_db\_user) | DB user to be created. | `string` | n/a |
 | <a name="input_instance_class"></a> [instance\_class](#input\_instance\_class) | Instance class to use for the DB servers. | `string` | `"db.t3.small"` |
+| <a name="input_is_standby_db_required"></a> [is\_standby\_db\_required](#input\_is\_standby\_db\_required) | True, if a standby DB should be provisioned in a separate AZ. | `bool` | `true` |
 | <a name="input_monitoring_interval_in_seconds"></a> [monitoring\_interval\_in\_seconds](#input\_monitoring\_interval\_in\_seconds) | Period in seconds in which the enhanced monitoring metrics of the DB instance should be collected. | `number` | `60` |
 | <a name="input_postgres_version"></a> [postgres\_version](#input\_postgres\_version) | Postgres version to provision the DB instance. | `string` | `"11"` |
 | <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | IDs of the private subnets in which the DB instances should be deployed to | `list(string)` | n/a |

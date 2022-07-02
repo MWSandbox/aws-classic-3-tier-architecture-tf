@@ -165,7 +165,7 @@ variable "db_password_secret_key" {
 variable "is_standby_db_required" {
   description = "True, if a standby DB should be provisioned in a separate AZ."
   type        = bool
-  default = true
+  default     = true
 }
 
 variable "domain_name" {

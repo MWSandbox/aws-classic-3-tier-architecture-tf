@@ -93,5 +93,5 @@ variable "availability_zones" {
 variable "is_standby_db_required" {
   description = "True, if a standby DB should be provisioned in a separate AZ."
   type        = bool
-  default = true
+  default     = true
 }

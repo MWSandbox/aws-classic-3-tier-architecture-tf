@@ -40,7 +40,7 @@
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | List of availability zones to run the infrastructure. Number of availability zones should match number of private/public subnets for high availability. | `list(string)` | <pre>[<br>  "eu-central-1a",<br>  "eu-central-1b"<br>]</pre> |
+| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | List of availability zones to run the infrastructure. Number of availability zones should match number of private/public subnets for high availability. | `list(string)` | n/a |
 | <a name="input_common"></a> [common](#input\_common) | Common properties reused in multiple modules. | <pre>object({<br>    project_name = string<br>    aws_region   = string<br>  })</pre> | n/a |
 | <a name="input_flow_log_format"></a> [flow\_log\_format](#input\_flow\_log\_format) | Format of the VPC flow logs | `string` | `"${account-id} ${action} ${srcaddr} ${srcport} ${dstaddr} ${dstport} ${az-id} ${subnet-id} ${type} ${traffic-path} ${flow-direction} ${bytes}"` |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDRs of the private subnets. | `list(string)` | <pre>[<br>  "10.0.2.0/23",<br>  "10.0.4.0/23"<br>]</pre> |

@@ -19,7 +19,7 @@ resource "aws_db_instance" "app_data" {
   max_allocated_storage               = 0
   db_subnet_group_name                = aws_db_subnet_group.app_data.name
   vpc_security_group_ids              = [aws_security_group.app_data.id]
-  name                                = var.db_name
+  db_name                             = var.db_name
   monitoring_interval                 = var.monitoring_interval_in_seconds
   monitoring_role_arn                 = aws_iam_role.monitoring.arn
   skip_final_snapshot                 = true

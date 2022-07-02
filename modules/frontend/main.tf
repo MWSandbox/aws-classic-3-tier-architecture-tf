@@ -9,32 +9,47 @@ resource "aws_s3_bucket" "frontend" {
   #ts:skip=AC_AWS_0215 All users in the AWS account will have access to the frontend
   #ts:skip=AC_AWS_0208 Static website hosting is enabled on purpose
   bucket        = var.frontend_dns_name
-  acl           = "private"
   force_destroy = true
-
-  logging {
-    target_bucket = var.logs_bucket.id
-    target_prefix = "frontend-logs/"
-  }
-
-  website {
-    index_document = "index.html"
-  }
-
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
 
   tags = {
     Name = var.frontend_dns_name
+  }
+}
+
+resource "aws_s3_bucket_logging" "frontend" {
+  bucket        = aws_s3_bucket.frontend.id
+  target_bucket = var.logs_bucket.id
+  target_prefix = "frontend-logs/"
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+resource "aws_s3_bucket_acl" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_website_configuration" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+
+  index_document {
+    suffix = "index.html"
+  }
+}
+
+resource "aws_s3_bucket_versioning" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 

@@ -141,16 +141,16 @@ If you want to reuse this project and customize it to your needs, this guide wil
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.69 |
-| <a name="requirement_http"></a> [http](#requirement\_http) | ~> 2.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.21 |
+| <a name="requirement_http"></a> [http](#requirement\_http) | ~> 2.2 |
 | <a name="requirement_template"></a> [template](#requirement\_template) | ~> 2.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_http"></a> [http](#provider\_http) | 2.1.0 |
+| <a name="provider_http"></a> [http](#provider\_http) | 2.2.0 |
 
 ## Modules
 
@@ -202,6 +202,7 @@ If you want to reuse this project and customize it to your needs, this guide wil
 | <a name="input_flow_log_format"></a> [flow\_log\_format](#input\_flow\_log\_format) | Format of the VPC flow logs | `string` | `"${account-id} ${action} ${srcaddr} ${srcport} ${dstaddr} ${dstport} ${az-id} ${subnet-id} ${type} ${traffic-path} ${flow-direction} ${bytes}"` |
 | <a name="input_frontend_dns_prefix"></a> [frontend\_dns\_prefix](#input\_frontend\_dns\_prefix) | The prefix to the domain name to be used to access the frontend. Frontend DNS name = frontend\_dns\_prefix + domain\_name. Has to end with a dot. | `string` | n/a |
 | <a name="input_is_own_ip_restricted"></a> [is\_own\_ip\_restricted](#input\_is\_own\_ip\_restricted) | True, if the application should only be available from your own public IPv4 address. The address will be resolved automatically. | `bool` | n/a |
+| <a name="input_is_standby_db_required"></a> [is\_standby\_db\_required](#input\_is\_standby\_db\_required) | True, if a standby DB should be provisioned in a separate AZ. | `bool` | `true` |
 | <a name="input_load_balancer_access_logs_prefix"></a> [load\_balancer\_access\_logs\_prefix](#input\_load\_balancer\_access\_logs\_prefix) | Prefix of the load balancer access logs that will be stored inside the logging S3 bucket. | `string` | `"classic-arch-lb"` |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDRs of the private subnets. | `list(string)` | <pre>[<br>  "10.0.2.0/23",<br>  "10.0.4.0/23"<br>]</pre> |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDRs of the public subnets. | `list(string)` | <pre>[<br>  "10.0.0.0/24",<br>  "10.0.1.0/24"<br>]</pre> |

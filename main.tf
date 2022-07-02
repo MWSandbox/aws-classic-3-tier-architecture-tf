@@ -2,11 +2,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.69"
+      version = "~> 4.21"
     }
     http = {
       source  = "hashicorp/http"
-      version = "~> 2.1"
+      version = "~> 2.2"
     }
     template = {
       source  = "hashicorp/template"
@@ -22,7 +22,7 @@ terraform {
     dynamodb_table = "YOUR TABLE"
   }
 
-  required_version = ">= 1.1.0"
+  required_version = ">= 1.2.0"
 }
 
 provider "aws" {
