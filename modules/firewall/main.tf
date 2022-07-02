@@ -133,4 +133,26 @@ resource "aws_wafv2_web_acl" "general_firewall" {
     metric_name                = "AllowedRequests"
     sampled_requests_enabled   = true
   }
+
+  rule {
+    name     = "aws-rules-for-bad-inputs"
+    priority = 3
+
+    override_action {
+      none {}
+    }
+
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesKnownBadInputsRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = local.wafv2_rule_level_config.is_cloudwatch_enabled
+      metric_name                = "BlockedRequests"
+      sampled_requests_enabled   = local.wafv2_rule_level_config.is_request_sampling_enabled
+    }
+  }
 }

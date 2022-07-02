@@ -7,7 +7,7 @@ locals {
 resource "aws_lb" "entry_point" {
   # checkov:skip=CKV_AWS_150: Load balancers should be deleted on destroy -> whole infrastructure should be removed
   name = var.common.project_name
-  #tfsec:ignore:aws-elbv2-alb-not-public ELB is the entrypoint to the application and therefore exposed publicly on purpose
+  #tfsec:ignore:aws-elb-alb-not-public ELB is the entrypoint to the application and therefore exposed publicly on purpose
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.public.id]

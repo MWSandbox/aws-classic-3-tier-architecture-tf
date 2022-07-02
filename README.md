@@ -105,6 +105,7 @@ After the infrastructure has been provisioned, you can deploy the frontend websi
 - Add further monitoring / logging tools
 - Automatically transfer log files to storage classes for infrequently accessed data after an amount of time
 - Add alerts when autoscaling groups are scaling in/out
+- Use RDS IAM passwordless authentication for RDS Database
 
 # Developer Instructions
 If you want to reuse this project and customize it to your needs, this guide will help you with the setup.

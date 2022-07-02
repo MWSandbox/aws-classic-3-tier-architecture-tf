@@ -109,7 +109,7 @@ module "db" {
   db_user                         = var.db_user
   db_password_secret_name         = var.db_password_secret_name
   db_password_secret_key          = var.db_password_secret_key
-  is_standby_db_required = var.is_standby_db_required
+  is_standby_db_required          = var.is_standby_db_required
 }
 
 module "app" {

@@ -1,14 +1,13 @@
 repos:
-- repo: git://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.55.0
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.73.0
   hooks:
     - id: terraform_fmt
-    - id: checkov
-      args: [
-        "-d", ".",
-        "--skip-check", "CKV_AWS_133,CKV_AWS_144,CKV_AWS_150",
-        "--quiet",
-      ]
+    - id: terraform_checkov
+      args: 
+        - --args=-d .
+        - --args=--skip-check CKV_AWS_133,CKV_AWS_144,CKV_AWS_150
+        - --args=--quiet
     - id: terraform_tfsec
     - id: terrascan
       entry: /usr/bin/terrascan scan -o json -d ./ --non-recursive -i terraform

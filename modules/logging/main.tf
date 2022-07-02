@@ -32,6 +32,7 @@ resource "aws_s3_bucket_acl" "logs" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "logs" {
+  #ts:skip=AC_AWS_0207 Access Logging requires SSE-S3 encryption - see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-logs.html
   bucket = aws_s3_bucket.logs.id
 
   rule {

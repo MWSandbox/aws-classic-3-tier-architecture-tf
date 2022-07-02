@@ -103,6 +103,7 @@ resource "aws_iam_role_policy" "flow_logs" {
   policy = data.aws_iam_policy_document.flow_logs_role_policy.json
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards Alread very restrictive by permitting access only to specified log group
 data "aws_iam_policy_document" "flow_logs_role_policy" {
   statement {
     actions = [
@@ -216,7 +217,7 @@ resource "aws_network_acl" "this" {
   }
 }
 
-#tfsec:ignore:aws-vpc-no-public-ingress Application is reachable via HTTP & HTTPS from the internet
+#tfsec:ignore:aws-vpc-no-public-ingress-acl Application is reachable via HTTP & HTTPS from the internet
 resource "aws_network_acl_rule" "allow_http_and_https_connections" {
   count          = 4
   network_acl_id = aws_network_acl.this.id
@@ -239,7 +240,7 @@ resource "aws_network_acl_rule" "allow_vpc_connections" {
   cidr_block     = var.vpc_cidr
 }
 
-#tfsec:ignore:aws-vpc-no-public-ingress NAT gateway will keep the source IP addresses from requesting clients but exchange ports according. Therefore ephemeral ports need to be open for all IP addresses.
+#tfsec:ignore:aws-vpc-no-public-ingress-acl NAT gateway will keep the source IP addresses from requesting clients but exchange ports according. Therefore ephemeral ports need to be open for all IP addresses.
 resource "aws_network_acl_rule" "allow_nat_connections" {
   count          = 2
   network_acl_id = aws_network_acl.this.id

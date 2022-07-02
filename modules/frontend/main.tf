@@ -22,6 +22,7 @@ resource "aws_s3_bucket_logging" "frontend" {
   target_prefix = "frontend-logs/"
 }
 
+#tfsec:ignore:aws-s3-encryption-customer-key Static website hosting - not a good use case for KMS encryption
 resource "aws_s3_bucket_server_side_encryption_configuration" "frontend" {
   bucket = aws_s3_bucket.frontend.id
 
@@ -163,6 +164,12 @@ resource "aws_cloudfront_response_headers_policy" "secure_header_config" {
   comment = "Header config that uses best practices to protect against XSS, MIME type sniffing, Clickjacking."
 
   security_headers_config {
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      override                   = true
+      preload                    = true
+    }
     content_security_policy {
       override                = true
       content_security_policy = "frame-ancestors 'none'; default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; manifest-src 'self'; object-src 'none'; connect-src 'self' https://${var.backend_dns_name}/"
